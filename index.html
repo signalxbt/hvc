@@ -5,29 +5,32 @@
   <title>Happy Valley Capital</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    /* full-screen black canvas */
+    /* Full-screen black canvas */
     html,body{
       height:100%;margin:0;background:#000;color:#fff;
       font:500 clamp(1.1rem,2.5vw,1.75rem)/1.2 "Consolas","Courier New",monospace;
-      -webkit-font-smoothing:antialiased;     /* thicker on mobile */
+      -webkit-font-smoothing:antialiased;
       display:flex;align-items:center;justify-content:flex-start;
-      padding-left:10vw;                     /* small left gutter */
+      padding-left:10vw;             /* left gutter */
     }
 
-    /* typewriter effect */
+    /* Typewriter element */
     .typed{
-      display:inline-block;overflow:hidden;
-      animation:typing 2.5s steps(21,end) forwards;    /* reveal 21 chars */
+      display:inline-block;
+      overflow:hidden;
+      white-space:nowrap;            /* ⇠ keeps text on ONE line */
+      animation:typing 2.5s steps(21,end) forwards;
     }
-    .typed::after{                                   /* blinking caret  */
-      content:"";display:inline-block;width:.15em;height:1em;
+    .typed::after{                   /* blinking caret  */
+      content:"";
+      display:inline-block;width:.15em;height:1em;
       background:#fff;margin-left:0;
       animation:blink .75s step-end infinite;
     }
 
     /* keyframes */
-    @keyframes typing { from{ width:0 } to{ width:21ch } }
-    @keyframes blink  { 50%{ background:transparent } }
+    @keyframes typing{from{width:0} to{width:21ch}}
+    @keyframes blink {50%{background:transparent}}
   </style>
 </head>
 <body>
