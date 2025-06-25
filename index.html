@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Happy Valley Capital</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    /* Full-screen white canvas */
+    html, body {
+      height: 100%;
+      margin: 0;
+      background:#fff;
+      font-family:"Consolas","Courier New",monospace;
+      display:flex;
+      align-items:center;        /* midway down (vertical-center)  */
+      justify-content:flex-start;/* stick to the left edge         */
+      padding-left:10vw;         /* small gutter so it’s not flush */
+    }
+
+    /* Typewriter block */
+    .type {
+      display:inline-block;
+      overflow:hidden;           /* keeps text hidden until “typed” */
+      border-right:.15em solid #000;  /* blinking caret  */
+      white-space:nowrap;
+      animation:
+        typing 2.5s steps(20,end) 1 forwards,
+        blink 0.75s step-end infinite;
+      font-size:clamp(1.25rem,4vw,2rem);
+    }
+
+    @keyframes typing   { from { width:0 }  to { width:14ch } }
+    @keyframes blink    { 50%  { border-color:transparent } }
+  </style>
+</head>
+<body>
+  <span class="type">Happy Valley Capital</span>
+</body>
+</html>
