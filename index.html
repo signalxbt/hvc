@@ -5,37 +5,50 @@
   <title>Happy Valley Capital</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    /* full-screen black canvas */
-    html, body {
-      height: 100%;
-      margin: 0;
-      background:#000;
-      font-family:"Consolas","Courier New",monospace;
-      display:flex;
-      align-items:center;           /* vertical centre */
-      justify-content:flex-start;   /* stay left */
-      padding-left:10vw;            /* small gutter */
-      color:#fff;                   /* default text colour */
+    /* --- full-screen canvas ----------------------------------------------- */
+    html,body{
+      height:100%;margin:0;background:#000;color:#fff;
+      font:600 clamp(1.25rem,4vw,2rem)/1.2 "Consolas","Courier New","Courier",monospace;
+      -webkit-font-smoothing:antialiased;      /* crisper on mobile Safari   */
+      display:flex;flex-direction:column;
+      justify-content:center;align-items:flex-start; /* vertical-centre, left */
+      padding-left:10vw;                       /* small gutter from edge     */
     }
 
-    /* type-writer block */
-    .type {
-      display:inline-block;
-      overflow:hidden;              /* hide until “typed” */
-      border-right:.15em solid #fff;/* blinking caret (white) */
-      white-space:nowrap;
-      animation:
-        typing 2.5s steps(20,end) 1 forwards,
-        blink 0.75s step-end infinite;
-      font-size:clamp(1.25rem,4vw,2rem);
+    /* --- typewriter container --------------------------------------------- */
+    .typewriter{text-align:left}
+
+    /* main typing line */
+    .typed{
+      display:inline-block;overflow:hidden;
+      animation:typing 2.5s steps(20,end) forwards;      /* reveal text */
+    }
+    /* caret shown ONLY while typing, then hidden */
+    .typed::after{
+      content:"";display:inline-block;width:.15em;height:1em;
+      background:#fff;margin-left:0;
+      animation:blink .75s step-end infinite, hideCaret 0s forwards 2.5s;
     }
 
-    /* animate width from 0 to 20ch (20 characters) */
-    @keyframes typing { from { width:0 } to { width:20ch } }
-    @keyframes blink  { 50%  { border-color:transparent } }
+    /* second line stays hidden until typing finished */
+    .newline{opacity:0;animation:showPrompt 0s forwards 2.6s}
+    .prompt{margin-right:.25em}
+    .cursor{
+      display:inline-block;width:.15em;height:1em;background:#fff;
+      animation:blink .75s step-end infinite;
+    }
+
+    /* keyframes */
+    @keyframes typing   {from{width:0}  to{width:20ch}}
+    @keyframes blink    {50%{background:transparent}}
+    @keyframes hideCaret{to  {background:transparent}}
+    @keyframes showPrompt{to {opacity:1}}
   </style>
 </head>
 <body>
-  <span class="type">Happy Valley Capital</span>
+  <div class="typewriter">
+    <span class="typed">Happy Valley Capital</span>
+    <div class="newline"><span class="prompt">&gt;</span><span class="cursor"></span></div>
+  </div>
 </body>
 </html>
