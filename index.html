@@ -5,52 +5,33 @@
   <title>Happy Valley Capital</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    /* ─── Global layout ───────────────────────────────────────────── */
+    /* ── page layout ────────────────────────────────────────────── */
     html,body{
       height:100%;margin:0;background:#000;color:#fff;
       font:700 clamp(1.1rem,2.5vw,1.75rem)/1.2 "Consolas","Courier New",monospace;
       -webkit-font-smoothing:antialiased;
       display:flex;align-items:center;justify-content:flex-start;
-      padding-left:10vw;                        /* left gutter */
+      padding-left:10vw;                       /* small left gutter */
     }
 
-    /* ─── Cursor-only phase (first 2 s) ──────────────────────────── */
-    .cursor-only{
-      width:0.6em;height:1em;                  /* “block” size  */
-      background:#fff;
-      animation:blink .7s step-end infinite;
-    }
-
-    /* ─── Typewriter line (starts at t = 2 s) ───────────────────── */
+    /* ── typewriter line with block cursor ─────────────────────── */
     .typed{
       display:inline-block;
       overflow:hidden;
-      white-space:nowrap;                      /* stay on one line */
+      white-space:nowrap;                      /* single line       */
+      width:0;                                 /* start hidden      */
       border-right:0.6em solid #fff;           /* thick block caret */
-      /* typing starts after 2 s; lasts 2.5 s; then caret keeps blinking */
       animation:
-        typing 2.5s steps(22,end) 2s forwards,
-        blink 0.7s step-end infinite 4.5s;     /* blink resumes post-typing */
+        typing 2.5s steps(22,end) 2s forwards, /* text after 2 s    */
+        blink  0.7s step-end infinite;         /* cursor blink      */
     }
 
-    /* ─── Keyframes ─────────────────────────────────────────────── */
-    @keyframes typing { from{ width:0 } to{ width:22ch } } /* 22 = chars incl. spaces + period */
-    @keyframes blink  { 50% { background:transparent; border-color:transparent } }
+    /* ── keyframes ─────────────────────────────────────────────── */
+    @keyframes typing{ from{width:0} to{width:22ch} } /* 22 chars incl. spaces + period */
+    @keyframes blink { 50%{ border-color:transparent } }
   </style>
 </head>
 <body>
-  <!-- Phase 1: stand-alone cursor -->
-  <span class="cursor-only"></span>
-
-  <!-- Phase 2: typed text replaces stand-alone cursor via JS -->
-  <span class="typed" id="typeLine" hidden>Happy Valley Capital.</span>
-
-  <script>
-    /* After 2 s, swap the blinking block for the typing line */
-    setTimeout(()=>{
-      document.querySelector('.cursor-only').remove();
-      document.getElementById('typeLine').hidden=false;
-    },2000);
-  </script>
+  <span class="typed">Happy Valley Capital.</span>
 </body>
 </html>
